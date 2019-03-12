@@ -56,6 +56,10 @@ public class ProxyServiceFactory implements ManagedServiceFactory, ManagedServic
     public void updated(String pid, Dictionary<String, ?> properties) throws ConfigurationException {
         deleted(pid);
 
+        if (properties == null) {
+            return;
+        }
+
         String path = Optional.ofNullable(properties.get(Proxy.PATH))
             .filter(value -> value instanceof String)
             .map(Object::toString)
@@ -93,6 +97,11 @@ public class ProxyServiceFactory implements ManagedServiceFactory, ManagedServic
     // variant which works with singular pid - emulates multiple PIDs with proxy.[pid].[key]=[value] syntax.
     @Override
     public void updated(Dictionary<String, ?> properties) throws ConfigurationException {
+        if (properties == null) {
+            pidToPath.keySet().forEach(this::deleted);
+            return;
+        }
+
         Enumeration<String> keys = properties.keys();
 
         Set<String> pids = new LinkedHashSet<>();
