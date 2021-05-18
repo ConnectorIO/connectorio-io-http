@@ -1,7 +1,12 @@
-# ConnectorIO IO HTTP
+# This repository is archived
+**Functionality provided by this extension is now included in modules provided by [ConnectorIO Addons](https://github.com/connectorio/connectorio-addons).**
+
+## ConnectorIO IO HTTP
 
 This tiny project allows to proxy requests coming to a given path into service deployed elsewhere.
 You can use this project to deploy an endpoint which will re-route requests to LAN resources.
+
+### Configuration
 
 Example configuration (`org.openhab.proxy.cfg` or `services/proxy.cfg`):
 ```
